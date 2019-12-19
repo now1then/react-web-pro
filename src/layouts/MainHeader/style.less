@@ -1,0 +1,39 @@
+.main-header {
+  background: #fff;
+  padding: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #1890ff;
+    }
+  }
+
+  .user-info {
+    cursor: pointer;
+    padding: 0 10px;
+    &:hover {
+      color: #1890ff;
+      background: rgba(0, 0, 0, 0.045);
+    }
+    .user-img {
+      vertical-align: middle;
+      height: 32px;
+      width: 32px;
+      border-radius: 32px;
+      border: 1px solid rgb(221, 221, 221);
+      background: url("~@/assets/images/nowthen.jpg") no-repeat;
+      background-size: cover;
+      display: inline-block;
+    }
+    .user-name {
+      margin-left: 10px;
+    }
+  }
+}
