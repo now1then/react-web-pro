@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 console.log(__dirname);
 const srcDir = path.join(__dirname, "../src");
@@ -24,7 +25,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.html`
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: `${srcDir}/assets/images/nowthen.jpg`,
+        to: "nowthen.jpg"
+      }
+    ])
   ],
   module: {
     rules: [
