@@ -27,6 +27,10 @@ const config = [
 ];
 
 const AppRoute = () => {
+  if (!Array.isArray(routes)) {
+    return null;
+  }
+
   return (
     <Router>
       <Switch>

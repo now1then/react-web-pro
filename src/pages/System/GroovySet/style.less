@@ -1,0 +1,78 @@
+.page_groovy_set {
+  padding: 30px 20px 20px;
+  margin-bottom: 20px;
+  background: #fff;
+  .operation {
+    .ant-btn {
+      padding: 0;
+    }
+  }
+}
+
+.code-mirror-modal {
+  .ant-modal-body {
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .form-area {
+    // margin-bottom: 15px;
+    min-height: 60px;
+  }
+  .ant-form-inline .ant-form-item-with-help {
+    margin-bottom: 0;
+  }
+  .ant-spin-nested-loading,
+  .ant-spin-container {
+    height: 100%;
+  }
+  .ReactCodeMirror {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .full-screen-icon {
+    font-size: 22px;
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    z-index: 10;
+    color: #fff;
+    background: rgba(136, 136, 136, 0.3);
+    cursor: pointer;
+    &:hover {
+      // font-size: 26px;
+      transform: scale(1.2);
+      background: rgba(217, 217, 217, 0.45);
+    }
+  }
+  .full-screen-exit-icon {
+    font-size: 26px;
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    z-index: 10;
+    color: #fff;
+    background: rgba(217, 217, 217, 0.45);
+    cursor: pointer;
+    &:hover {
+      // font-size: 22px;
+      background: rgba(136, 136, 136, 0.3);
+      transform: scale(0.8);
+    }
+  }
+}
+
+.code-mirror-modal-fullScreen {
+  top: 0;
+  width: 100% !important;
+  padding: 0;
+  .ant-modal-body {
+    height: calc(100vh - 108px);
+  }
+  .ReactCodeMirror {
+    height: calc(100% - 60px);
+    .CodeMirror {
+      height: 100%;
+    }
+  }
+}

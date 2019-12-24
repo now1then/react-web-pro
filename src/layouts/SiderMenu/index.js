@@ -1,13 +1,63 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useMemo } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { Layout, Menu, Icon, Row } from 'antd';
 
 import { appStores } from '@/stores';
 import './style.less';
 
-const SiderMenu = (props) => {
+const renderMenuItem = target => {
+  return target.filter(item => item.path && item.name)
+    .map(subMenu => {
+      if (subMenu.childRoutes && !!subMenu.childRoutes.find(child => child.path && child.name)) {
+        return (
+          <Menu.SubMenu
+            key={subMenu.path}
+            title={
+              <div>
+                {subMenu.icon && <Icon type={subMenu.icon} />}
+                <span>{subMenu.name}</span>
+              </div>
+            }
+          >
+            {renderMenuItem(subMenu.childRoutes)}
+          </Menu.SubMenu>
+        );
+      }
+      return (
+        <Menu.Item key={subMenu.path}>
+          <Link to={subMenu.path}>
+            <span>
+              {subMenu.icon && <Icon type={subMenu.icon} />}
+              <span>{subMenu.name}</span>
+            </span>
+          </Link>
+        </Menu.Item>
+      );
+    });
+};
+
+const SiderMenu = ({ routes }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const { globalStore } = appStores();
+  const [openKeys, setOpenKeys] = useState([]);
+
+  useEffect(() => {
+    const list = pathname.split('/').splice(1);
+    setOpenKeys(list.map((item, index) => `/${list.slice(0, index + 1).join('/')}`));
+  }, [])
+
+  const getSelectedKeys = useMemo(() => {
+    console.log('getSelectedKeys');
+    const list = pathname.split('/').splice(1);
+    return list.map((item, index) => `/${list.slice(0, index + 1).join('/')}`);
+  }, [pathname])
+
+  const onOpenChange = (keys) => {
+    setOpenKeys(keys);
+  }
+
   return (
     <Layout.Sider trigger={null} collapsible collapsed={globalStore.collapsed} className="main-left-slider">
       <Link to="/">
@@ -21,37 +71,11 @@ const SiderMenu = (props) => {
         theme="dark"
         style={{ paddingLeft: 0, marginBottom: 0 }}
         className="main-menu"
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        selectedKeys={getSelectedKeys}
       >
-        <Menu.SubMenu
-          key="sub1"
-          title={
-            <span>
-              <Icon type="mail" />
-              <span>Navigation One</span>
-            </span>
-          }
-        >
-          <Menu.Item key="1">Option 1</Menu.Item>
-          <Menu.Item key="2">Option 2</Menu.Item>
-          <Menu.Item key="3">Option 3</Menu.Item>
-          <Menu.Item key="4">Option 4</Menu.Item>
-        </Menu.SubMenu>
-        <Menu.SubMenu
-          key="sub2"
-          title={
-            <span>
-              <Icon type="appstore" />
-              <span>Navigation Two</span>
-            </span>
-          }
-        >
-          <Menu.Item key="5">Option 5</Menu.Item>
-          <Menu.Item key="6">Option 6</Menu.Item>
-          <Menu.SubMenu key="sub3" title="Submenu">
-            <Menu.Item key="7">Option 7</Menu.Item>
-            <Menu.Item key="8">Option 8</Menu.Item>
-          </Menu.SubMenu>
-        </Menu.SubMenu>
+        {renderMenuItem(routes)}
       </Menu>
     </Layout.Sider>
   );

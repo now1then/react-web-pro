@@ -34,7 +34,7 @@
 
   .ant-menu-submenu-title,
   .ant-menu-item {
-    color: #ecf5ff;
+    // color: #ecf5ff;
     z-index: 0;
   }
 
@@ -54,8 +54,23 @@
     transition: all 0.6s;
   }
 
-  .ant-menu-submenu-title:hover::before,
-  .ant-menu-item:hover::before {
-    width: 100%;
+  // .ant-menu-submenu-title:hover::before,
+  // .ant-menu-item:hover::before {
+  //   width: 100%;
+  // }
+
+  .ant-menu-submenu-title,
+  .ant-menu-item {
+    &:hover {
+      color: #fff;
+      &::before {
+        width: 100%;
+      }
+    }
+    > a {
+      &:hover {
+        color: #fff;
+      }
+    }
   }
 }

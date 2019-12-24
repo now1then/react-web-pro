@@ -6,15 +6,16 @@ import moment from "moment";
 import "moment/locale/zh-cn";
 
 import './styles/main.less';
-import AppRouter from './router';
-import RenderRoutes from './routers';
-import RenderRoutes1 from './routers/test';
+import AppRouter from './routers/AppRouter';
+// import RenderRoutes from './routers';
+// import RenderRoutes1 from './routers/test';
 
 moment.locale("zh-cn");
 
 const App = () => (
   <ConfigProvider locale={zhCN}>
-    <RenderRoutes1 />
+    <AppRouter></AppRouter>
+    {/* <RenderRoutes1 /> */}
     {/* <AppRouter></AppRouter> */}
   </ConfigProvider>
 );

@@ -11,7 +11,20 @@ module.exports = merge(commonConfig, {
     hot: true,
     open: false,
     historyApiFallback: true,
-    compress: true
+    compress: true,
+    proxy: {
+      "/testapi": {
+        target:
+          "https://www.easy-mock.com/mock/5dff0acd5b188e66c6e07329/react-template",
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: { "^/testapi": "" }
+      }
+      // "/test1": {
+      //   target: "../mock/",
+      //   pathRewrite: { "^/test1": "" }
+      // }
+    }
     // publicPath: "/"
   },
   plugins: [
