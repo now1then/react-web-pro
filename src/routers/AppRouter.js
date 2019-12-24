@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import LoadingPage from "@/components/LoadingPage";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
   Redirect

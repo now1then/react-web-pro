@@ -1,9 +1,11 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 console.log(__dirname);
 const srcDir = path.join(__dirname, "../src");
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   // context: path.resolve(__dirname, "../"),
@@ -16,7 +18,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "../dist"),
     filename: "[name].[chunkhash:8].js",
-    publicPath: "/",
+    // publicPath: "/",
     chunkFilename: "chunk/[name].[chunkhash:8].js"
   },
   plugins: [
@@ -34,11 +36,18 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"]
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader"
+        ]
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -62,10 +71,10 @@ module.exports = {
       "@": srcDir,
       "@pages": `${srcDir}/pages`
     }
-  },
-  optimization: {
-    removeAvailableModules: true, // 删除已解决的chunk (默认 true)
-    removeEmptyChunks: true, // 删除空的chunks (默认 true)
-    mergeDuplicateChunks: true // 合并重复的chunk (默认 true)
   }
+  // optimization: {
+  //   removeAvailableModules: true, // 删除已解决的chunk (默认 true)
+  //   removeEmptyChunks: true, // 删除空的chunks (默认 true)
+  //   mergeDuplicateChunks: true // 合并重复的chunk (默认 true)
+  // }
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Icon, Dropdown, Menu, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import { appStores } from '@/stores/'
@@ -15,8 +16,10 @@ const menu = (
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="1">
-      <Icon type="logout" />
-      退出登录
+      <Link to="/login">
+        <Icon type="logout" />
+        &nbsp; 退出登录
+      </Link>
     </Menu.Item>
   </Menu>
 );
