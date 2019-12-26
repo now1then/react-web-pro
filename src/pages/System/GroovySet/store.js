@@ -1,17 +1,18 @@
-import React, { createContext } from "react";
-import { observable, action, computed } from "mobx";
-import { message } from "antd";
-import request from "@/utils/newRequest";
+/* eslint-disable import/extensions */
+import { createContext } from 'react';
+import { observable, action, computed } from 'mobx';
+import { message } from 'antd';
+import request from '@/services/newRequest';
 
 const demoData = [
   {
-    name: "脚本1",
-    no: "jiaoben1",
+    name: '脚本1',
+    no: 'jiaoben1',
     online: false,
-    createDate: "2019-11-11",
-    updateDate: "2019-12-12",
-    content: "test"
-  }
+    createDate: '2019-11-11',
+    updateDate: '2019-12-12',
+    content: 'test',
+  },
 ];
 
 class GroovySetStore {
@@ -27,14 +28,14 @@ class GroovySetStore {
 
   @observable newLoading = false;
 
-  @observable modalType = "new"; // edit, new, show
+  @observable modalType = 'new'; // edit, new, show
 
-  @observable modalNo = ""; // 弹窗 标识
+  @observable modalNo = ''; // 弹窗 标识
 
   @observable modalData = {}; // 弹窗的数据
 
   @observable pagination = {
-    size: "small",
+    size: 'small',
     pageSize: 10,
     current: 1,
     total: 0,
@@ -45,14 +46,14 @@ class GroovySetStore {
     onShowSizeChange: (currentP, size) => {
       this.qryTableDate(currentP, size);
     },
-    showTotal: totalP => `共 ${totalP} 条记录`
+    showTotal: totalP => `共 ${totalP} 条记录`,
   };
 
   @computed get ModalTitle() {
-    let res = "Groovy脚本";
-    if (this.modalType === "edit") {
+    let res = 'Groovy脚本';
+    if (this.modalType === 'edit') {
       res = `编辑${res}`;
-    } else if (this.modalType === "new") {
+    } else if (this.modalType === 'new') {
       res = `新增${res}`;
     }
     return res;
@@ -69,7 +70,7 @@ class GroovySetStore {
     this.newModalVisible = true;
     this.modalType = data.type;
     this.modalNo = data.no;
-    if (data.type === "edit" || data.type === "show") {
+    if (data.type === 'edit' || data.type === 'show') {
       this.qryDetail(data.no);
     } else {
       this.modalData = {};
@@ -81,9 +82,9 @@ class GroovySetStore {
   async qryTableDate(page = 1, size = this.pagination.pageSize) {
     this.loading = true;
     const res = await request({
-      url: "/script/page",
-      method: "post",
-      data: { page, size }
+      url: '/script/page',
+      method: 'post',
+      data: { page, size },
     });
 
     if (res.success) {
@@ -103,15 +104,15 @@ class GroovySetStore {
   async onlineChange(type, record) {
     this.onlineLoading = true;
     const res = await request({
-      url: "/script/online",
-      method: "post",
+      url: '/script/online',
+      method: 'post',
       data: {
         no: record.no,
-        online: type
-      }
+        online: type,
+      },
     });
     if (res.success) {
-      message.success("状态切换成功！");
+      message.success('状态切换成功！');
       this.qryTableDate();
     }
     this.onlineLoading = false;
@@ -125,29 +126,30 @@ class GroovySetStore {
     //   body: data
     // })
     const res = await request({
-      url: "/script/add",
+      url: '/script/add',
       // url: '/supplier/add',
-      method: "post",
-      data
+      method: 'post',
+      data,
     });
     if (res.success) {
-      message.success("新建成功！");
+      message.success('新建成功！');
       this.newModalVisible = false;
       this.qryTableDate();
     }
     this.newLoading = false;
   }
+
   // 修改脚本
   @action.bound
   async modEdit(data) {
     this.newLoading = true;
     const res = await request({
-      url: "/script/edit",
-      method: "post",
-      data
+      url: '/script/edit',
+      method: 'post',
+      data,
     });
     if (res.success) {
-      message.success("修改成功！");
+      message.success('修改成功！');
       this.newModalVisible = false;
       this.qryTableDate();
     }
@@ -159,13 +161,13 @@ class GroovySetStore {
   async delOne(data) {
     this.recordLoding = true;
     const res = await request({
-      url: "/script/delete",
+      url: '/script/delete',
       // url: '/supplier/add',
-      method: "post",
-      data: { no: data }
+      method: 'post',
+      data: { no: data },
     });
     if (res.success) {
-      message.success("删除成功！");
+      message.success('删除成功！');
       this.qryTableDate();
     }
     this.recordLoding = false;
@@ -175,9 +177,9 @@ class GroovySetStore {
   async qryDetail(data) {
     this.loading = true;
     const res = await request({
-      url: "/script",
-      method: "post",
-      data: { no: data }
+      url: '/script',
+      method: 'post',
+      data: { no: data },
     });
 
     if (res.success) {

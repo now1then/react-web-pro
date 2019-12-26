@@ -1,12 +1,11 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import { Layout, Icon, Dropdown, Menu, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
-import { appStores } from '@/stores/'
+import { appStores } from '@/stores';
 import './style.less';
-// const globalStore = {};
-// import userImg from '@/../public/nowthen.jpg';
 
 const menu = (
   <Menu>
@@ -24,7 +23,7 @@ const menu = (
   </Menu>
 );
 
-const MainHeader = (props) => {
+const MainHeader = () => {
   const { globalStore } = appStores();
   return (
     <Layout.Header className="main-header">
@@ -39,17 +38,14 @@ const MainHeader = (props) => {
         <Col>
           <Dropdown overlay={menu} trigger={['click', 'hover']} placement="bottomCenter">
             <div className="user-info">
-              <span className="user-img"></span>
+              <span className="user-img" />
               <span className="user-name">{globalStore.userInfo.loginName}</span>
             </div>
-            {/* <span style={{ cursor: 'pointer', display: 'block' }}>
-              <div><div /><span style={{ marginLeft: 12 }}>{globalStore.userInfo.loginName}</span></div>
-            </span> */}
           </Dropdown>
         </Col>
       </Row>
     </Layout.Header>
-  )
-}
+  );
+};
 
 export default observer(MainHeader);

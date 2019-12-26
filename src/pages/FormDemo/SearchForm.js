@@ -1,15 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Form, Col, Row, Input, Select, Button, DatePicker } from "antd";
-import moment from "moment";
-import { message } from "antd";
-import { observer } from "mobx-react";
-import { appStores } from "@/stores";
+/* eslint-disable import/extensions */
+import React, { useState, useContext, useEffect } from 'react';
+import { Form, Input, Button, DatePicker, message } from 'antd';
+import moment from 'moment';
 
-import Store from "./store";
+import { observer } from 'mobx-react';
+// import { appStores } from '@/stores';
+
+import Store from './store';
 
 const SearchForm = ({ form, storeProps }) => {
   const pageStore = useContext(Store);
-  const { commonStore } = appStores();
+  // const { commonStore } = appStores();
 
   useEffect(() => {
     // commonStore.qrySupplierList({ all: true });
@@ -25,13 +26,13 @@ const SearchForm = ({ form, storeProps }) => {
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
-        if (values.gmtEnd.diff(values.gmtBegin, "days") > 90) {
-          message.warning("查询日期的选择范围不能超过90天");
+        if (values.gmtEnd.diff(values.gmtBegin, 'days') > 90) {
+          message.warning('查询日期的选择范围不能超过90天');
           return;
         }
         pageStore.searchParams.name = values.name;
-        pageStore.searchParams.gmtBegin = values.gmtBegin.format("YYYY-MM-DD");
-        pageStore.searchParams.gmtEnd = values.gmtEnd.format("YYYY-MM-DD");
+        pageStore.searchParams.gmtBegin = values.gmtBegin.format('YYYY-MM-DD');
+        pageStore.searchParams.gmtEnd = values.gmtEnd.format('YYYY-MM-DD');
         pageStore.qryTableDate();
         console.log(values);
       }
@@ -48,7 +49,7 @@ const SearchForm = ({ form, storeProps }) => {
   };
   // 查询日期 -禁用开始日期
   const disabledStartDate = date => {
-    const endDate = getFieldValue("gmtEnd");
+    const endDate = getFieldValue('gmtEnd');
     if (!date || !endDate) {
       return false;
     }
@@ -59,7 +60,7 @@ const SearchForm = ({ form, storeProps }) => {
   };
   // 查询日期 -禁用结束日期
   const disabledEndDate = date => {
-    const startDate = getFieldValue("gmtBegin");
+    const startDate = getFieldValue('gmtBegin');
     if (!date || !startDate) {
       return false;
     }
@@ -76,48 +77,39 @@ const SearchForm = ({ form, storeProps }) => {
       // style={{ paddingBottom: "20px" }}
     >
       <Form.Item label="项目名称">
-        {getFieldDecorator("name", {
-          initialValue: searchParams.name
-        })(
-          <Input
-            style={{ width: "200px", marginRight: "20px" }}
-            placeholder="请填写"
-          />
-        )}
+        {getFieldDecorator('name', {
+          initialValue: searchParams.name,
+        })(<Input style={{ width: '200px', marginRight: '20px' }} placeholder="请填写" />)}
       </Form.Item>
       <Form.Item label="开始时间">
-        {getFieldDecorator("gmtBegin", {
-          initialValue: moment(searchParams.gmtBegin)
+        {getFieldDecorator('gmtBegin', {
+          initialValue: moment(searchParams.gmtBegin),
         })(
           <DatePicker
-            style={{ width: "150px" }}
+            style={{ width: '150px' }}
             allowClear={false}
             showToday
-            //onChange={this.onStartChange}
+            // onChange={this.onStartChange}
             onOpenChange={handleStartOpenChange}
             disabledDate={disabledStartDate}
-          />
+          />,
         )}
       </Form.Item>
       <Form.Item label="- 结束时间">
-        {getFieldDecorator("gmtEnd", {
-          initialValue: moment(searchParams.gmtEnd)
+        {getFieldDecorator('gmtEnd', {
+          initialValue: moment(searchParams.gmtEnd),
         })(
           <DatePicker
-            style={{ width: "150px" }}
+            style={{ width: '150px' }}
             showToday
-            //onChange={this.onEndChange}
+            // onChange={this.onEndChange}
             open={endOpen}
             onOpenChange={handleEndOpenChange}
             disabledDate={disabledEndDate}
-          />
+          />,
         )}
       </Form.Item>
-      <Button
-        style={{ float: "right", margin: "4px 15px 0 0" }}
-        type="primary"
-        htmlType="submit"
-      >
+      <Button style={{ float: 'right', margin: '4px 15px 0 0' }} type="primary" htmlType="submit">
         查询
       </Button>
     </Form>

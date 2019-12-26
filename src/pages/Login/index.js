@@ -1,12 +1,17 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { Form, Input, Checkbox, Button, Icon, message } from "antd";
-import { observer } from "mobx-react";
-import { appStores } from "@/stores";
-import "./style.less";
+/* eslint-disable import/extensions */
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form, Input, Checkbox, Button, Icon, message } from 'antd';
+import { observer } from 'mobx-react';
+
+import { appStores } from '@/stores';
+import './style.less';
 
 const LoginPage = props => {
-  const { getFieldDecorator } = props.form;
+  const {
+    form: { getFieldDecorator },
+  } = props;
+
   const history = useHistory();
   const { globalStore } = appStores();
 
@@ -14,10 +19,10 @@ const LoginPage = props => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("登录信息 ", values);
-        message.success("登录成功，即将跳转...");
+        console.log('登录信息 ', values);
+        message.success('登录成功，即将跳转...', 2);
         setTimeout(() => {
-          history.push("/");
+          history.push('/');
         }, 2000);
       }
     });
@@ -28,39 +33,35 @@ const LoginPage = props => {
       <Form onSubmit={handleSubmit} className="login-form">
         <div className="login-title">欢迎登录 {globalStore.appTitle}</div>
         <Form.Item>
-          {getFieldDecorator("username", {
-            rules: [{ required: true, message: "请输入用户名！" }]
+          {getFieldDecorator('username', {
+            rules: [{ required: true, message: '请输入用户名！' }],
           })(
             <Input
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="用户名"
-            />
+            />,
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator("password", {
-            rules: [{ required: true, message: "请输入密码！" }]
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: '请输入密码！' }],
           })(
             <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="密码"
-            />
+            />,
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator("remember", {
-            valuePropName: "checked",
-            initialValue: true
+          {getFieldDecorator('remember', {
+            valuePropName: 'checked',
+            initialValue: true,
           })(<Checkbox>记住我</Checkbox>)}
           <a className="login-form-forgot" href="">
             忘记密码
           </a>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
+          <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
         </Form.Item>
@@ -69,4 +70,4 @@ const LoginPage = props => {
   );
 };
 
-export default Form.create({ name: "login" })(observer(LoginPage));
+export default Form.create({ name: 'login' })(observer(LoginPage));

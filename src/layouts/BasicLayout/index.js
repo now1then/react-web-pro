@@ -1,23 +1,20 @@
-import React from "react";
-import { Layout, Breadcrumb } from "antd";
-import { Link } from "react-router-dom";
-import { renderRoutes } from "react-router-config";
+import React from 'react';
+import { Layout } from 'antd';
+import SiderMenu from '../SiderMenu';
+import MainHeader from '../MainHeader';
+// import MainFooter from "../MainFooter";
 
-import SiderMenu from "../SiderMenu";
-import MainHeader from "../MainHeader";
-import MainFooter from "../MainFooter";
-
-import "./style.less";
+import './style.less';
 
 const BasicLayout = ({ route, children }) => {
-  console.log(route, children);
+  // console.log(route, children);
   return (
     <Layout className="main-layout">
       <SiderMenu routes={route.childRoutes} />
+      {/* 左侧菜单导航 */}
       <Layout className="main-layout-right">
-        <MainHeader></MainHeader>
+        <MainHeader />
         <Layout.Content className="main-layout-content">
-          {/* {renderRoutes(props.route.routes)} */}
           {children}
           {/* <MainFooter></MainFooter> */}
         </Layout.Content>

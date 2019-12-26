@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route } from "react-router";
+import React from 'react';
+import { Switch, Route } from 'react-router';
 
 function renderRoutes(routes, extraProps = {}, switchProps = {}) {
   return routes ? (
@@ -12,7 +12,7 @@ function renderRoutes(routes, extraProps = {}, switchProps = {}) {
           strict={route.strict}
           render={props =>
             route.render ? (
-              route.render({ ...props, ...extraProps, route: route })
+              route.render({ ...props, ...extraProps, route })
             ) : (
               <route.component {...props} {...extraProps} route={route} />
             )

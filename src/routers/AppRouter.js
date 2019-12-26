@@ -1,12 +1,9 @@
-import React, { lazy, Suspense } from "react";
-import LoadingPage from "@/components/LoadingPage";
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
-import config from "./config1";
+/* eslint-disable import/extensions */
+import React, { Suspense } from 'react';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
+import LoadingPage from '@/components/LoadingPage';
+import config from './config';
 
 const renderRoutes = routes => {
   if (!Array.isArray(routes)) {
@@ -15,11 +12,11 @@ const renderRoutes = routes => {
 
   return (
     <Switch>
-      {routes.map((route, i) => {
+      {routes.map((route, index) => {
         if (route.redirect) {
           return (
             <Redirect
-              key={route.path || i}
+              key={route.path || index}
               exact={route.exact}
               strict={route.strict}
               from={route.path}
@@ -30,7 +27,7 @@ const renderRoutes = routes => {
 
         return (
           <Route
-            key={route.path || i}
+            key={route.path || index}
             path={route.path}
             exact={route.exact}
             strict={route.strict}
@@ -39,9 +36,7 @@ const renderRoutes = routes => {
               if (route.component) {
                 return (
                   <Suspense fallback={<LoadingPage />}>
-                    <route.component route={route}>
-                      {renderChildRoutes}
-                    </route.component>
+                    <route.component route={route}>{renderChildRoutes}</route.component>
                   </Suspense>
                 );
               }
@@ -55,7 +50,7 @@ const renderRoutes = routes => {
 };
 
 const AppRouter = () => {
-  console.log(renderRoutes(config));
+  // console.log(renderRoutes(config));
   return <Router>{renderRoutes(config)}</Router>;
 };
 
