@@ -83,7 +83,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function(response) {
     // 对响应数据做处理，以下根据实际数据结构改动！！...
-    // console.log(response);
     const { code } = response.data || {};
     if (code === 109 || code === 108) {
       // 请求超时，跳转登录页

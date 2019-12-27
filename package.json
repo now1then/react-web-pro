@@ -1,9 +1,20 @@
 {
-  "name": "react-template",
+  "name": "my-react-template",
   "version": "1.0.0",
-  "description": "react template , webpack4.0, react16.12.0, antd ...",
-  "main": "index.js",
-  "author": "now1then",
+  "private": true,
+  "author": {
+    "name": "nowthen",
+    "email": "rnlvwyx@gmail.com"
+  },
+  "description": "🌈 🚀基于webpack4.0 从零搭建的React中后台项目框架模板。🚀",
+  "keywords": [
+    "my-react-template",
+    "react",
+    "mobx",
+    "webpack4",
+    "react-template",
+    "nowthen"
+  ],
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --color --inline --progress --config build/webpack.dev.js",
