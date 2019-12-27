@@ -1,5 +1,5 @@
 {
-  "name": "my-react-template",
+  "name": "react-web-pro",
   "version": "1.0.0",
   "private": true,
   "author": {
@@ -8,7 +8,7 @@
   },
   "description": "🌈 🚀基于webpack4.0 从零搭建的React中后台项目框架模板。🚀",
   "keywords": [
-    "my-react-template",
+    "react-web-pro",
     "react",
     "mobx",
     "webpack4",

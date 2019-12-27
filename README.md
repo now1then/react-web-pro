@@ -1,15 +1,15 @@
-# [my-react-template](https://github.com/now1then/my-react-template)
+# [react-web-pro](https://github.com/now1then/react-web-pro)
 
 🌈 🚀 基于 webpack4.0 从零搭建的 React 中后台项目框架模板。🚀
 
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/now1then/my-react-template/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/now1then/react-web-pro/master/LICENSE)
 [![webpack](https://img.shields.io/badge/webpack-4.41.2-green)](https://github.com/webpack/webpack) [![react](https://img.shields.io/badge/react-16.12.0-green)](https://github.com/facebook/react) [![react-router](https://img.shields.io/badge/react--router-5.1.2-green)](https://github.com/ReactTraining/react-router) [![axios](https://img.shields.io/badge/axios-0.19.0-green)](https://github.com/axios/axios) [![ant-design](https://img.shields.io/badge/ant--design-3.26.2-green.svg)](https://ant.design/index-cn) [![mobx](https://img.shields.io/badge/mobx-5.15.0-green.svg)](https://github.com/mobxjs/mobx)
 
 ## 说明
 
 本项目为 React 中后台项目框架模板，方便快速进行具体项目开发。包括 Webpack4.0 配置及打包优化、React 全家桶使用（React + React-router + Axios + Mobx + Antd）、ESLint 等项目开发规范等。
 
-项目 Git 地址：[https://github.com/now1then/my-react-template](https://github.com/now1then/my-react-template)；
+项目 Git 地址：[https://github.com/now1then/react-web-pro](https://github.com/now1then/react-web-pro)；
 项目介绍文章链接-语雀：[https://www.yuque.com/nowthen/longroad/exeuw7](https://www.yuque.com/nowthen/longroad/exeuw7)；
 在线演示地址：
 
@@ -65,7 +65,7 @@
 ### 克隆项目
 
 ```bash
-git clone git@github.com:now1then/my-react-template.git
+git clone git@github.com:now1then/react-web-pro.git
 ```
 
 ### 初始化依赖配置
