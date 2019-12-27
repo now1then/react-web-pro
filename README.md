@@ -86,7 +86,7 @@ yarn start
 ### 生产环境 打包构建
 
 ```bash
-yarn build
+yarn build  //生产环境 打包构建
 
 yarn build:report // 图形化分析打包文件大小；
 
