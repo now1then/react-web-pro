@@ -10,7 +10,7 @@ module.exports = merge(commonConfig, {
   devServer: {
     port: 9000,
     hot: true,
-    open: false,
+    open: true,
     historyApiFallback: true,
     compress: true,
     // 接口代理转发
