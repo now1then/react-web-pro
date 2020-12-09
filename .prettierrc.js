@@ -1,13 +1,13 @@
 module.exports = {
   singleQuote: true,
   trailingComma: 'all',
-  printWidth: 100,
-  overrides: [
-    {
-      files: '.prettierrc',
-      options: {
-        parser: 'json',
-      },
-    },
-  ],
+  printWidth: 120,
+  // overrides: [
+  //   {
+  //     files: '.prettierrc',
+  //     options: {
+  //       parser: 'json',
+  //     },
+  //   },
+  // ],
 };
