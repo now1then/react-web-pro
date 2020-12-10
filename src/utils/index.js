@@ -84,7 +84,7 @@ export function splitUrl(url) {
   const items = (str && str.split('&')) || [];
   let arr = {};
   const json = {};
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i += 1) {
     arr = items[i].split('=');
     json[arr[0]] = arr[1];
   }

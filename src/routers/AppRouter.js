@@ -1,11 +1,10 @@
-/* eslint-disable import/extensions */
 import React, { Suspense } from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import LoadingPage from '@/components/LoadingPage';
 import config from './config';
 
-const renderRoutes = routes => {
+const renderRoutes = (routes) => {
   if (!Array.isArray(routes)) {
     return null;
   }
@@ -49,9 +48,6 @@ const renderRoutes = routes => {
   );
 };
 
-const AppRouter = () => {
-  // console.log(renderRoutes(config));
-  return <Router>{renderRoutes(config)}</Router>;
-};
+const AppRouter = () => <Router>{renderRoutes(config)}</Router>;
 
 export default AppRouter;

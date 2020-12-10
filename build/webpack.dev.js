@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 // const path = require('path');
 
 const commonConfig = require('./webpack.common');
@@ -8,7 +8,7 @@ module.exports = merge(commonConfig, {
   mode: 'development',
   // 开发环境本地启动的服务配置
   devServer: {
-    port: 9000,
+    port: 9001,
     hot: true,
     open: true,
     historyApiFallback: true,
@@ -23,6 +23,9 @@ module.exports = merge(commonConfig, {
       },
     },
   },
-  plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [ new webpack.HotModuleReplacementPlugin()],
   devtool: 'eval-source-map',
+  optimization: {
+    moduleIds: 'named',
+  },
 });

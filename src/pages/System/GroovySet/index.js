@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Row, Button, Table, Switch, Divider } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 
@@ -38,7 +39,7 @@ const GroovySet = () => {
           unCheckedChildren="停用"
           checked={text}
           loading={toJS(pageStore.onlineLoading)}
-          onChange={type => pageStore.onlineChange(type, record)}
+          onChange={(type) => pageStore.onlineChange(type, record)}
         />
       ),
     },
@@ -85,7 +86,7 @@ const GroovySet = () => {
 
   return (
     <div className="page_groovy_set page-content">
-      <Button type="primary" icon="plus" onClick={() => pageStore.openModal({ type: 'new' })}>
+      <Button type="primary" icon={<PlusOutlined />} onClick={() => pageStore.openModal({ type: 'new' })}>
         新建
       </Button>
       <Row style={{ marginTop: 20, backgroundColor: '#fff' }}>

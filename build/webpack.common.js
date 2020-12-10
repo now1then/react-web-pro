@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const os = require('os');
 const HappyPack = require('happypack');
 
@@ -16,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].[chunk:8].js',
+    filename: '[name].[chunkhash:8].js',
     // publicPath: "/",
     chunkFilename: 'chunk/[name].[chunkhash:8].js',
   },
@@ -77,18 +78,21 @@ module.exports = {
       id: 'happybabel',
       loaders: ['babel-loader?cacheDirectory=true'],
       threadPool: happyThreadPool,
-      cache: true,
+      // cache: true,
       verbose: true,
     }),
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.html`,
     }),
-    new CopyWebpackPlugin([
-      {
-        from: `${srcDir}/assets/images/nowthen.jpg`,
-        to: 'nowthen.jpg',
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: `${srcDir}/assets/images/nowthen.jpg`,
+          to: 'nowthen.jpg',
+        },
+      ],
+    }),
+    new AntdDayjsWebpackPlugin()
   ],
   resolve: {
     alias: {
