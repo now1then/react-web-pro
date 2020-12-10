@@ -1,6 +1,6 @@
-/* eslint-disable import/extensions */
 import React from 'react';
-import { Layout, Icon, Dropdown, Menu, Row, Col } from 'antd';
+import { Layout, Dropdown, Menu, Row, Col } from 'antd';
+import { SmileOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
@@ -10,13 +10,13 @@ import './style.less';
 const menu = (
   <Menu>
     <Menu.Item key="0">
-      <Icon type="smile" />
+      <SmileOutlined />
       个人信息
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="1">
       <Link to="/login">
-        <Icon type="logout" />
+        <LogoutOutlined />
         &nbsp; 退出登录
       </Link>
     </Menu.Item>
@@ -29,11 +29,9 @@ const MainHeader = () => {
     <Layout.Header className="main-header">
       <Row type="flex" style={{ paddingRight: 20 }}>
         <Col style={{ flex: 1 }}>
-          <Icon
-            className="trigger"
-            type={globalStore.collapsed ? 'menu-unfold' : 'menu-fold'}
-            onClick={globalStore.toggleCollapsed}
-          />
+          <span className="trigger" onClick={globalStore.toggleCollapsed}>
+            {globalStore.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </span>
         </Col>
         <Col>
           <Dropdown overlay={menu} trigger={['click', 'hover']} placement="bottomCenter">

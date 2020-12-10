@@ -16,7 +16,7 @@ export default class GlobalStore {
   }
 
   @action.bound setData(data = {}) {
-    Object.entries(data).forEach(item => {
+    Object.entries(data).forEach((item) => {
       this[item[0]] = item[1];
     });
   }

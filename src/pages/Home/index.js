@@ -20,12 +20,7 @@ const HomePage = () => {
       <h2>{pageStore.pageTitle}</h2>
       <div>
         <span>num值：{num}</span>
-        <Button
-          type="primary"
-          size="small"
-          style={{ marginLeft: 10 }}
-          onClick={() => setNum(num + 1)}
-        >
+        <Button type="primary" size="small" style={{ marginLeft: 10 }} onClick={() => setNum(num + 1)}>
           +1
         </Button>
       </div>

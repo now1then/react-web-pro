@@ -4,7 +4,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/now1then/react-web-pro/master/LICENSE)
 
-[![webpack](https://img.shields.io/badge/webpack-4.41.2-green)](https://github.com/webpack/webpack) [![react](https://img.shields.io/badge/react-16.12.0-green)](https://github.com/facebook/react) [![react-router](https://img.shields.io/badge/react--router-5.1.2-green)](https://github.com/ReactTraining/react-router) [![axios](https://img.shields.io/badge/axios-0.19.0-green)](https://github.com/axios/axios) [![ant-design](https://img.shields.io/badge/ant--design-3.26.2-green.svg)](https://ant.design/index-cn) [![mobx](https://img.shields.io/badge/mobx-5.15.0-green.svg)](https://github.com/mobxjs/mobx)
+[![webpack](https://img.shields.io/badge/webpack-5.10.0-green)](https://github.com/webpack/webpack) [![react](https://img.shields.io/badge/react-17.0.1-green)](https://github.com/facebook/react) [![react-router](https://img.shields.io/badge/react--router-5.2.0-green)](https://github.com/ReactTraining/react-router) [![axios](https://img.shields.io/badge/axios-0.21.0-green)](https://github.com/axios/axios) [![ant-design](https://img.shields.io/badge/ant--design-4.9.2-green.svg)](https://ant.design/index-cn) [![mobx](https://img.shields.io/badge/mobx-5.15.0-green.svg)](https://github.com/mobxjs/mobx)
 
 ## 说明
 
@@ -23,13 +23,13 @@
 
 涉及的技术栈均采用当前最新的版本和语法：
 
-- 使用 Webpack4.0 构建项目（不使用 create-react-app、umi 等脚手架）；
+- 使用 Webpack5.0 构建项目（不使用 create-react-app、umi 等脚手架）；
 - 使用 Babel7 配置转换 ES6、React、Mobx 等语法；
-- React 版本 V16.12.0，全部采用函数化 Hooks 特性开发项目组件；
+- React 版本 V17.0.1，全部采用函数化 Hooks 特性开发项目组件；
 - 采用 React-router5 工具 配置项目路由；
 - 采用 Mobx5 + Hooks 实现项目数据状态管理；
 - 封装 Axios 库实现与后台 http 请求交互；
-- UI 库采用流行的 Ant-design3.0 组件库；
+- UI 库采用流行的 Ant-design4.0 组件库；
 - 完整项目实现及模块结构拆分；
 
 ### 目录结构

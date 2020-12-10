@@ -1,8 +1,7 @@
-/* eslint-disable import/extensions */
 import { observable, action, computed } from 'mobx';
 import { message } from 'antd';
 import { createContext } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import request from '@/services/newRequest';
 
@@ -46,15 +45,13 @@ class CompanySetStore {
     onShowSizeChange: (currentP, size) => {
       this.qryTableDate(currentP, size);
     },
-    showTotal: totalP => `共 ${totalP} 条记录`,
+    showTotal: (totalP) => `共 ${totalP} 条记录`,
   };
 
   @observable searchParams = {
     name: undefined,
-    gmtBegin: moment(new Date())
-      .subtract(7, 'days')
-      .format('YYYY-MM-DD'),
-    gmtEnd: moment(new Date()).format('YYYY-MM-DD'),
+    gmtBegin: dayjs(new Date()).subtract(7, 'days').format('YYYY-MM-DD'),
+    gmtEnd: dayjs(new Date()).format('YYYY-MM-DD'),
   };
 
   @computed get modalTitle() {
@@ -68,7 +65,7 @@ class CompanySetStore {
   }
 
   @action.bound setData(data = {}) {
-    Object.entries(data).forEach(item => {
+    Object.entries(data).forEach((item) => {
       this[item[0]] = item[1];
     });
   }

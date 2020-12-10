@@ -2,8 +2,6 @@ import React from 'react';
 
 import './style.less';
 
-const WelcomePage = () => {
-  return <div className="page-welcome" />;
-};
+const WelcomePage = () => <div className="page-welcome" />;
 
 export default WelcomePage;

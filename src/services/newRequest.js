@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
-/* eslint-disable func-names */
+
 /*
  *  接口请求封装
  * @Author: nowThen
@@ -18,15 +18,15 @@ const instance = axios.create({
   timeout: 15000, // 请求超时时间
   // `transformRequest` 允许在向服务器发送前，修改请求数据
   transformRequest: [
-    function(data) {
+    function (data) {
       // 对 data 进行任意转换处理
       return data;
     },
   ],
   // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
   transformResponse: [
-    function(data) {
-      console.log(data);
+    function (data) {
+      // console.log(data);
       // 对 data 进行任意转换处理
       return JSON.parse(data);
     },
@@ -38,7 +38,7 @@ const instance = axios.create({
 
 // 实例添加请求拦截器
 instance.interceptors.request.use(
-  function(config) {
+  (config) => {
     // 在发送请求之前做处理...
     config.headers = Object.assign(
       config.method === 'get'
@@ -73,15 +73,15 @@ instance.interceptors.request.use(
     }
     return Promise.resolve(config);
   },
-  function(error) {
+  (error) => 
     // 对请求错误做处理...
-    return Promise.reject(error);
-  },
+     Promise.reject(error)
+  ,
 );
 
 // 实例添加响应拦截器
 instance.interceptors.response.use(
-  function(response) {
+  (response) => {
     // 对响应数据做处理，以下根据实际数据结构改动！！...
     const { code } = response.data || {};
     if (code === 109 || code === 108) {
@@ -101,7 +101,7 @@ instance.interceptors.response.use(
       return Promise.resolve(checkStatus(response));
     }
   },
-  function(error) {
+  (error) => {
     // 对响应错误做处理...
     // console.log(error);
     if (error.response) {
@@ -114,7 +114,7 @@ instance.interceptors.response.use(
   },
 );
 
-const request = async function(opt) {
+const request = async (opt) => {
   const options = {
     method: 'get',
     ifHandleError: true, // 是否统一处理接口失败(提示)

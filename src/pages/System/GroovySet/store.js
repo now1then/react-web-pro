@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { createContext } from 'react';
 import { observable, action, computed } from 'mobx';
 import { message } from 'antd';
@@ -46,7 +45,7 @@ class GroovySetStore {
     onShowSizeChange: (currentP, size) => {
       this.qryTableDate(currentP, size);
     },
-    showTotal: totalP => `共 ${totalP} 条记录`,
+    showTotal: (totalP) => `共 ${totalP} 条记录`,
   };
 
   @computed get ModalTitle() {
@@ -60,7 +59,7 @@ class GroovySetStore {
   }
 
   @action.bound setData(data = {}) {
-    Object.entries(data).forEach(item => {
+    Object.entries(data).forEach((item) => {
       this[item[0]] = item[1];
     });
   }

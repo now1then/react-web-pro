@@ -12,6 +12,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
     'prefer-destructuring': 0,
+    'prefer-promise-reject-errors': 1,
     'no-else-return': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': [2, { ignore: ['^@/'] }],
@@ -37,6 +38,6 @@ module.exports = {
     'jsx-a11y/anchor-has-content': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/anchor-is-valid': 0,
-    'comma-dangle': ['error', 'always-multiline'],
+    // 'comma-dangle': ['error', 'always-multiline'],
   },
 };

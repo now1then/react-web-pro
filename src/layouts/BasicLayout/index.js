@@ -6,21 +6,18 @@ import MainHeader from '../MainHeader';
 
 import './style.less';
 
-const BasicLayout = ({ route, children }) => {
-  // console.log(route, children);
-  return (
-    <Layout className="main-layout">
-      <SiderMenu routes={route.childRoutes} />
-      {/* 左侧菜单导航 */}
-      <Layout className="main-layout-right">
-        <MainHeader />
-        <Layout.Content className="main-layout-content">
-          {children}
-          {/* <MainFooter></MainFooter> */}
-        </Layout.Content>
-      </Layout>
+const BasicLayout = ({ route, children }) => (
+  <Layout className="main-layout">
+    <SiderMenu routes={route.childRoutes} />
+    {/* 左侧菜单导航 */}
+    <Layout className="main-layout-right">
+      <MainHeader />
+      <Layout.Content className="main-layout-content">
+        {children}
+        {/* <MainFooter></MainFooter> */}
+      </Layout.Content>
     </Layout>
-  );
-};
+  </Layout>
+);
 
 export default BasicLayout;

@@ -1,10 +1,9 @@
-/* eslint-disable import/extensions */
 import React, { useContext, useEffect, useState, createRef } from 'react';
 import { Form, Input, Modal, Icon, Spin, message } from 'antd';
 import { observer } from 'mobx-react';
 import CodeMirror from 'react-codemirror';
-import Store from './store';
 import { groovyTemp } from '@/utils/constant';
+import Store from './store';
 
 import 'codemirror/mode/groovy/groovy';
 import 'codemirror/lib/codemirror.css';
@@ -34,11 +33,10 @@ const options = {
   // hintOptions: { completeSingle: true },
 };
 
-const myModal = props => {
-  const {
-    form: { getFieldDecorator },
-  } = props;
+const myModal = () => {
+
   const codeRef = createRef();
+  const [form] = Form.useForm();
 
   const pageStore = useContext(Store);
   const { modalData } = pageStore;
@@ -57,21 +55,18 @@ const myModal = props => {
     }
   }, [code]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    props.form.validateFields((err, values) => {
-      if (!err) {
-        const groovyCode = codeRef.current && codeRef.current.getCodeMirror().getValue();
-        if (!groovyCode) {
-          message.error('请输入groovy脚本!');
-          return;
-        }
-        if (pageStore.modalType === 'edit') {
-          pageStore.modEdit({ no: values.no, name: values.name, content: groovyCode });
-        }
-        if (pageStore.modalType === 'new') {
-          pageStore.addEdit({ no: values.no, name: values.name, content: groovyCode });
-        }
+  const handleSubmit = () => {
+    form.validateFields().then((values) => {
+      const groovyCode = codeRef.current && codeRef.current.getCodeMirror().getValue();
+      if (!groovyCode) {
+        message.error('请输入groovy脚本!');
+        return;
+      }
+      if (pageStore.modalType === 'edit') {
+        pageStore.modEdit({ no: values.no, name: values.name, content: groovyCode });
+      }
+      if (pageStore.modalType === 'new') {
+        pageStore.addEdit({ no: values.no, name: values.name, content: groovyCode });
       }
     });
   };
@@ -85,9 +80,7 @@ const myModal = props => {
 
   return (
     <Modal
-      className={
-        fullscreen ? 'code-mirror-modal code-mirror-modal-fullScreen' : 'code-mirror-modal'
-      }
+      className={fullscreen ? 'code-mirror-modal code-mirror-modal-fullScreen' : 'code-mirror-modal'}
       title={pageStore.ModalTitle}
       destroyOnClose
       width={700}
@@ -98,47 +91,31 @@ const myModal = props => {
       onCancel={() => pageStore.setData({ newModalVisible: false })}
     >
       <Spin spinning={pageStore.loading}>
-        <Form layout="inline" className="form-area">
-          <Form.Item label="脚本名称">
-            {getFieldDecorator('name', {
-              initialValue: modalData.name,
-              rules: [{ required: true, whitespace: true, message: '请输入脚本名称' }],
-            })(
-              <Input
-                placeholder="请输入脚本名称"
-                maxLength={64}
-                disabled={pageStore.modalType !== 'new'}
-              />,
-            )}
+        <Form layout="inline" className="form-area" form={form}>
+          <Form.Item
+            label="脚本名称"
+            name="name"
+            initialValue={modalData.name}
+            rules={[{ required: true, whitespace: true, message: '请输入脚本名称' }]}
+          >
+            <Input placeholder="请输入脚本名称" maxLength={64} disabled={pageStore.modalType !== 'new'} />
           </Form.Item>
-          <Form.Item label="脚本标识">
-            {getFieldDecorator('no', {
-              initialValue: modalData.no,
-              rules: [
-                { required: true, whitespace: true, message: '请输入脚本标识' },
-                { pattern: /^[A-Za-z0-9_]+$/, message: '请输入字母、数字、下划线组合' },
-              ],
-            })(
-              <Input
-                placeholder="请输入脚本标识"
-                maxLength={64}
-                disabled={pageStore.modalType !== 'new'}
-              />,
-            )}
+          <Form.Item
+            label="脚本标识"
+            name="no"
+            initialValue={modalData.no}
+            rules={[
+              { required: true, whitespace: true, message: '请输入脚本标识' },
+              { pattern: /^[A-Za-z0-9_]+$/, message: '请输入字母、数字、下划线组合' },
+            ]}
+          >
+            <Input placeholder="请输入脚本标识" maxLength={64} disabled={pageStore.modalType !== 'new'} />
           </Form.Item>
         </Form>
         {fullscreen ? (
-          <Icon
-            type="fullscreen-exit"
-            className="full-screen-exit-icon"
-            onClick={() => setFullscreen(false)}
-          />
+          <Icon type="fullscreen-exit" className="full-screen-exit-icon" onClick={() => setFullscreen(false)} />
         ) : (
-          <Icon
-            type="fullscreen"
-            className="full-screen-icon"
-            onClick={() => setFullscreen(true)}
-          />
+          <Icon type="fullscreen" className="full-screen-icon" onClick={() => setFullscreen(true)} />
         )}
 
         <CodeMirror
@@ -153,4 +130,4 @@ const myModal = props => {
   );
 };
 
-export default Form.create()(observer(myModal));
+export default observer(myModal);
