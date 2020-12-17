@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Input, Checkbox, Button, Icon, message } from 'antd';
+import { Form, Input, Checkbox, Button, message } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react';
 
 import { appStores } from '@/stores';
@@ -23,11 +24,11 @@ const LoginPage = () => {
       <Form onFinish={handleSubmit} className="login-form">
         <div className="login-title">欢迎登录 {globalStore.appTitle}</div>
         <Form.Item name="username" rules={[{ required: true, message: '请输入用户名！' }]}>
-          <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+          <Input prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
         </Form.Item>
         <Form.Item name="password" rules={[{ required: true, message: '请输入密码！' }]}>
           <Input
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="密码"
           />
