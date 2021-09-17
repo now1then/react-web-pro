@@ -25,7 +25,7 @@ module.exports = merge(commonConfig, {
   },
   plugins: [ new webpack.HotModuleReplacementPlugin()],
   devtool: 'eval-source-map',
-  optimization: {
-    moduleIds: 'named',
-  },
+  // optimization: {
+  //   moduleIds: 'named',
+  // },
 });
